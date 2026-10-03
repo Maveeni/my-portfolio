@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Change these two lines to your own name and a one-sentence description. -->
+    <title>Your Name - Portfolio</title>
+    <meta name="description" content="My portfolio: the projects I build and the tools I'm learning." />
+    <meta name="theme-color" content="#E8E7EA" />
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Apply the saved light/dark theme before the page shows, so it never flashes. -->
+    <script>
+      try {
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark'
+      } catch (e) {}
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#home">Skip to content</a>
+
+    <!-- Startup splash: plays once per visit. Remove this block to turn it off. -->
+    <div class="splash" aria-hidden="true">
+      <div class="splash__inner">
+        <svg class="splash__logo" viewBox="0 0 500 500" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round">
+          <circle class="nw-line" cx="250" cy="250" r="186" pathLength="1" />
+          <path class="nw-line" d="M66 250 H436" pathLength="1" />
+          <path class="nw-line" d="M118 121 Q300 165 436 250" pathLength="1" />
+          <path class="nw-line" d="M207 69 Q340 165 436 250" pathLength="1" />
+          <path class="nw-line" d="M118 379 Q300 335 436 250" pathLength="1" />
+          <path class="nw-line" d="M207 431 Q340 335 436 250" pathLength="1" />
+        </svg>
+        <p class="splash__name">Learn With NextWork</p>
+      </div>
+    </div>
+
+    <!-- Dotted background. Lights up around the mouse. -->
+    <div class="dots" aria-hidden="true"><div class="dots__lit"></div></div>
+
+    <div class="shell">
+      <!-- ============ Sidebar (desktop) ============ -->
+      <aside class="rail" aria-label="Site">
+        <a class="rail__brand" href="#home">
+          <span class="rail__mark" data-initial>Y</span>
+          <span class="rail__wordmark" data-text="name">Your Name</span>
+        </a>
+
+        <nav class="rail__nav" aria-label="Sections">
+          <ul class="nav-list" data-nav></ul>
+        </nav>
+
+        <ul class="rail__utility">
+          <li>
+            <button class="rail__link" type="button" data-action="theme">
+              <svg data-icon="moon"></svg><span class="rail__label" data-theme-label>Dark mode</span>
+            </button>
+          </li>
+          <li>
+            <button class="rail__link" type="button" data-action="settings">
+              <svg data-icon="settings"></svg><span class="rail__label">Settings</span>
+            </button>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- ============ Top bar (phones and tablets) ============ -->
+      <header class="topbar">
+        <a class="topbar__brand" href="#home">
+          <span class="rail__mark" data-initial>Y</span>
+          <span data-text="name">Your Name</span>
+        </a>
+        <div class="topbar__actions">
+          <button class="icon-btn" type="button" data-action="theme" aria-label="Switch theme">
+            <svg data-icon="moon"></svg>
+          </button>
+          <button class="icon-btn" type="button" data-action="menu" aria-label="Open menu" aria-controls="menu" aria-expanded="false">
+            <svg data-icon="menu"></svg>
+          </button>
+        </div>
+      </header>
+
+      <dialog class="drawer" id="menu" aria-label="Menu">
+        <div class="drawer__head">
+          <span data-text="name">Your Name</span>
+          <button class="icon-btn" type="button" data-action="close-menu" aria-label="Close menu">
+            <svg data-icon="close"></svg>
+          </button>
+        </div>
+        <ul class="nav-list" data-nav></ul>
+        <button class="drawer__settings" type="button" data-action="settings">
+          <svg data-icon="settings"></svg> Settings
+        </button>
+      </dialog>
+
+      <!-- ============ The page ============ -->
+      <main class="page">
+        <!-- Home -->
+        <section class="hero" id="home" aria-labelledby="hero-title">
+          <div class="hero__text">
+            <h1 class="hero__title" id="hero-title" data-text="headline">Your headline here. Keep it short.</h1>
+            <p class="hero__intro" data-text="intro">One line about what you do and what you are learning right now.</p>
+          </div>
+          <div class="hero__side">
+            <ul class="socials" data-socials aria-label="My links"></ul>
+            <button class="hero__avatar" type="button" data-action="open-about" aria-haspopup="dialog" aria-label="About me">
+              <img data-photo src="images/avatar.svg" alt="" width="48" height="48" />
+            </button>
+          </div>
+        </section>
+
+        <!-- Tools -->
+        <section class="tools" id="tools" aria-labelledby="tools-title">
+          <h2 class="tools__label" id="tools-title">Learn with NextWork</h2>
+          <div class="marquee" data-marquee>
+            <ul class="marquee__track" data-track></ul>
+          </div>
+        </section>
+
+        <!-- Projects: empty cards for now -->
+        <section class="projects" id="projects" aria-labelledby="projects-title">
+          <h2 class="section-title" id="projects-title">Projects</h2>
+          <ul class="cards cards--four">
+            <li class="card card--dark card--empty card--project" style="--glow: #ff9900">
+              <span class="card__tag">Project · AWS</span>
+              <button class="card__title card__open" type="button" data-action="open-page" data-page="link-shortener" aria-haspopup="dialog">Link shortener</button>
+              <span class="card__text">Short links on Lambda, API Gateway and DynamoDB.</span>
+              <span class="card__more">Open project <span aria-hidden="true">→</span></span>
+            </li>
+            <li class="card card--dark card--empty card--project">
+              <span class="card__tag">Certifications</span>
+              <button class="card__title card__open" type="button" data-action="open-page" data-page="certifications" aria-haspopup="dialog">AWS Cloud Practitioner</button>
+              <span class="card__text">Plus two more on the way.</span>
+              <span class="card__more">See all <span aria-hidden="true">→</span></span>
+            </li>
+            <li class="card card--dark card--empty card--project" style="--glow: #2fbf71">
+              <span class="card__tag">Experience</span>
+              <button class="card__title card__open" type="button" data-action="open-page" data-page="experience" aria-haspopup="dialog">Cloud Engineering Intern</button>
+              <span class="card__text">Example Company · 2026 - now</span>
+              <span class="card__more">See all <span aria-hidden="true">→</span></span>
+            </li>
+            <li class="card card--dark card--empty card--project" style="--glow: #8b5cf6">
+              <span class="card__tag">Credentials</span>
+              <button class="card__title card__open" type="button" data-action="open-page" data-page="credentials" aria-haspopup="dialog">6 verified badges</button>
+              <span class="card__text">Hands-on projects checked by NextWork.</span>
+              <span class="card__more">See all <span aria-hidden="true">→</span></span>
+            </li>
+          </ul>
+          <div class="cards cards--split">
+            <div class="card card--dark card--empty card--tall card--project" style="--glow: #326ce5">
+              <span class="card__tag">Featured project · Kubernetes</span>
+              <button class="card__title card__open" type="button" data-action="open-page" data-page="home-lab" aria-haspopup="dialog">Kubernetes home lab</button>
+              <span class="card__text">A three-node cluster on old laptops, running my own apps with monitoring.</span>
+              <span class="card__media"></span>
+            </div>
+            <div class="card card--dark card--empty card--tall">
+              <span class="card__tag">Currently learning</span>
+              <span class="card__title">What I'm working on</span>
+              <ul class="progress">
+                <li><span class="progress__label">Kubernetes <span>60%</span></span><span class="progress__bar" style="--done: 60%; --bar: #4f86f0"></span></li>
+                <li><span class="progress__label">Terraform <span>40%</span></span><span class="progress__bar" style="--done: 40%; --bar: #9b6ad6"></span></li>
+                <li><span class="progress__label">Azure Fundamentals (AZ-900) <span>25%</span></span><span class="progress__bar" style="--done: 25%; --bar: #2b9af3"></span></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© <span data-year></span> <span data-text="name">Your Name</span></span>
+          <span>Built with the NextWork portfolio template</span>
+        </footer>
+      </main>
+    </div>
+
+    <!-- ============ Browser window: shows one of the pages below ============ -->
+    <dialog class="window window--browser" id="page" aria-labelledby="page-title">
+      <div class="window__bar">
+        <div class="window__lights">
+          <button class="window__light window__light--close" type="button" data-action="close-window" aria-label="Close"></button>
+          <span class="window__light window__light--min"></span>
+          <span class="window__light window__light--max"></span>
+        </div>
+        <div class="window__url" data-window-url></div>
+      </div>
+      <div class="window__body" data-window-body></div>
+    </dialog>
+
+    <!-- ============ Pages for the browser window ============
+         Each card opens the <template> with the same name (data-page="...").
+         data-url is the address shown in the window's address bar. -->
+    <template id="page-link-shortener" data-url="github.com/your-username/link-shortener">
+      <span class="card__tag">Project · AWS · Serverless</span>
+      <h2 class="window__title" id="page-title">Link shortener</h2>
+      <p class="window__lead">
+        A small URL shortener with no servers to manage. Paste a long link, get a short one back,
+        and see how many times it was opened.
+      </p>
+      <ul class="window__stack" aria-label="Built with">
+        <li>AWS Lambda</li><li>API Gateway</li><li>DynamoDB</li><li>Terraform</li>
+      </ul>
+      <span class="card__media window__shot" aria-hidden="true"></span>
+      <h3 class="window__heading">What I built</h3>
+      <ul class="window__list">
+        <li>An API that creates a short code and stores it in DynamoDB.</li>
+        <li>A redirect function that counts each click.</li>
+        <li>Infrastructure written in Terraform, deployed from GitHub Actions.</li>
+      </ul>
+      <h3 class="window__heading">What I learned</h3>
+      <p>How to keep Lambda functions small, set IAM permissions tightly, and watch costs stay near zero.</p>
+      <a class="btn btn--dark window__cta" href="https://github.com/your-username" target="_blank" rel="noopener">View on GitHub</a>
+    </template>
+
+    <template id="page-certifications" data-url="credly.com/users/your-name/badges">
+      <span class="card__tag">Certifications</span>
+      <h2 class="window__title" id="page-title">Certifications</h2>
+      <p class="window__lead">Exams I've passed, and the ones I'm studying for next.</p>
+      <ul class="entries">
+        <li class="entry">
+          <div class="entry__head"><h3>AWS Certified Cloud Practitioner</h3><span class="status status--done">Earned</span></div>
+          <p class="entry__meta">Amazon Web Services · Issued March 2026 · Credential ID ABC123XYZ</p>
+          <p>Cloud basics: core AWS services, pricing, security and the shared responsibility model.</p>
+        </li>
+        <li class="entry">
+          <div class="entry__head"><h3>Microsoft Azure Fundamentals (AZ-900)</h3><span class="status">In progress</span></div>
+          <p class="entry__meta">Microsoft · Exam booked for December 2026</p>
+          <p>Azure services, identity, governance and how Azure compares to AWS.</p>
+        </li>
+        <li class="entry">
+          <div class="entry__head"><h3>HashiCorp Terraform Associate</h3><span class="status">Planned</span></div>
+          <p class="entry__meta">HashiCorp · Aiming for early 2027</p>
+          <p>Writing, planning and applying infrastructure as code with Terraform.</p>
+        </li>
+      </ul>
+      <a class="btn btn--dark window__cta" href="https://www.credly.com" target="_blank" rel="noopener">View on Credly</a>
+    </template>
+
+    <template id="page-experience" data-url="linkedin.com/in/your-name/details/experience">
+      <span class="card__tag">Experience</span>
+      <h2 class="window__title" id="page-title">Experience</h2>
+      <p class="window__lead">Where I've worked and what I did there.</p>
+      <ul class="entries">
+        <li class="entry">
+          <div class="entry__head"><h3>Cloud Engineering Intern</h3><span class="entry__date">Jun 2026 - now</span></div>
+          <p class="entry__meta">Example Company · Remote</p>
+          <ul class="window__list">
+            <li>Moved two internal tools from a single server to AWS Lambda.</li>
+            <li>Wrote Terraform for new environments, cutting setup from days to an hour.</li>
+            <li>Added CloudWatch alarms so the team hears about problems first.</li>
+          </ul>
+        </li>
+        <li class="entry">
+          <div class="entry__head"><h3>IT Support Assistant</h3><span class="entry__date">2025 - 2026</span></div>
+          <p class="entry__meta">University Help Desk · Part-time</p>
+          <ul class="window__list">
+            <li>Solved 30+ tickets a week for students and staff.</li>
+            <li>Wrote a setup guide that cut repeat Wi-Fi tickets in half.</li>
+          </ul>
+        </li>
+        <li class="entry">
+          <div class="entry__head"><h3>Freelance Web Developer</h3><span class="entry__date">2024 - 2025</span></div>
+          <p class="entry__meta">Self-employed</p>
+          <ul class="window__list">
+            <li>Built and hosted websites for three local businesses.</li>
+          </ul>
+        </li>
+      </ul>
+      <a class="btn btn--dark window__cta" href="https://www.linkedin.com" target="_blank" rel="noopener">View on LinkedIn</a>
+    </template>
+
+    <template id="page-credentials" data-url="nextwork.org/your-name/credentials">
+      <span class="card__tag">Credentials</span>
+      <h2 class="window__title" id="page-title">Credentials</h2>
+      <p class="window__lead">Hands-on projects I've finished, each with a link to check it.</p>
+      <ul class="badges">
+        <li class="badge"><img class="badge__mark" src="images/tools/aws.svg" alt="" width="44" height="44" /><h3>Build a VPC on AWS</h3><p>NextWork · 2026</p><a href="https://nextwork.org" target="_blank" rel="noopener">View credential</a></li>
+        <li class="badge"><img class="badge__mark" src="images/tools/docker.svg" alt="" width="44" height="44" /><h3>Containers with Docker</h3><p>NextWork · 2026</p><a href="https://nextwork.org" target="_blank" rel="noopener">View credential</a></li>
+        <li class="badge"><img class="badge__mark" src="images/tools/kubernetes.svg" alt="" width="44" height="44" /><h3>Kubernetes basics</h3><p>NextWork · 2026</p><a href="https://nextwork.org" target="_blank" rel="noopener">View credential</a></li>
+        <li class="badge"><img class="badge__mark" src="images/tools/terraform.svg" alt="" width="44" height="44" /><h3>Infrastructure as code</h3><p>NextWork · 2026</p><a href="https://nextwork.org" target="_blank" rel="noopener">View credential</a></li>
+        <li class="badge"><img class="badge__mark" src="images/tools/claude.svg" alt="" width="44" height="44" /><h3>Coding with Claude</h3><p>NextWork · 2026</p><a href="https://nextwork.org" target="_blank" rel="noopener">View credential</a></li>
+        <li class="badge"><img class="badge__mark" src="images/tools/github.svg" alt="" width="44" height="44" /><h3>Version control with GitHub</h3><p>NextWork · 2025</p><a href="https://nextwork.org" target="_blank" rel="noopener">View credential</a></li>
+      </ul>
+    </template>
+
+    <template id="page-home-lab" data-url="github.com/your-username/home-lab">
+      <span class="card__tag">Featured project · Kubernetes</span>
+      <h2 class="window__title" id="page-title">Kubernetes home lab</h2>
+      <p class="window__lead">
+        A three-node Kubernetes cluster built from old laptops. It runs my own apps, and I use it
+        to practise things I can't break at work.
+      </p>
+      <ul class="window__stack" aria-label="Built with">
+        <li>Kubernetes</li><li>Docker</li><li>Prometheus</li><li>Grafana</li><li>GitHub Actions</li>
+      </ul>
+      <span class="card__media window__shot" aria-hidden="true"></span>
+      <h3 class="window__heading">What I built</h3>
+      <ul class="window__list">
+        <li>A cluster with k3s on three machines, set up with a single script.</li>
+        <li>Dashboards in Grafana showing CPU, memory and app health.</li>
+        <li>Automatic deploys: push to GitHub and the new version goes live.</li>
+      </ul>
+      <h3 class="window__heading">What I learned</h3>
+      <p>How pods, services and ingress fit together, and how to debug a cluster when something goes wrong.</p>
+      <a class="btn btn--dark window__cta" href="https://github.com/your-username" target="_blank" rel="noopener">View on GitHub</a>
+    </template>
+
+    <!-- ============ About window (opens from the profile picture) ============ -->
+    <dialog class="window window--small" id="about" aria-labelledby="about-title">
+      <div class="window__bar">
+        <div class="window__lights">
+          <button class="window__light window__light--close" type="button" data-action="close-window" aria-label="Close"></button>
+          <span class="window__light window__light--min"></span>
+          <span class="window__light window__light--max"></span>
+        </div>
+        <div class="window__url">About me</div>
+      </div>
+      <div class="window__body about">
+        <img class="about__photo" data-photo src="images/avatar.svg" alt="" width="96" height="96" />
+        <h2 class="window__title" id="about-title">Hi, I'm <span data-text="name">Your Name</span>.</h2>
+        <div class="about__text" data-about></div>
+        <div class="about__actions">
+          <button class="btn btn--dark" type="button" data-action="open-contact">Get in touch</button>
+          <ul class="socials" data-socials aria-label="My links"></ul>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ============ Contact window: a small message form ============ -->
+    <dialog class="window window--small" id="contact" aria-labelledby="contact-title">
+      <div class="window__bar">
+        <div class="window__lights">
+          <button class="window__light window__light--close" type="button" data-action="close-window" aria-label="Close"></button>
+          <span class="window__light window__light--min"></span>
+          <span class="window__light window__light--max"></span>
+        </div>
+        <div class="window__url">Get in touch</div>
+      </div>
+      <form class="window__body contact" data-contact-form>
+        <h2 class="window__title" id="contact-title">Get in touch</h2>
+        <p class="window__lead">Have a question, an opportunity or just want to say hi? Send me a message.</p>
+        <label>Your name <input name="name" autocomplete="name" required /></label>
+        <label>Your email <input name="email" type="email" autocomplete="email" required /></label>
+        <label>Message <textarea name="message" rows="5" required></textarea></label>
+        <button class="btn btn--dark window__cta" type="submit">Send message</button>
+        <p class="contact__note">This opens your email app with the message ready to send.</p>
+      </form>
+    </dialog>
+
+    <!-- ============ Settings panel ============ -->
+    <dialog class="settings" id="settings" aria-labelledby="settings-title">
+      <form class="settings__form" method="dialog" data-settings-form>
+        <header class="settings__head">
+          <h2 id="settings-title">Settings</h2>
+          <button class="icon-btn" type="button" data-action="close-settings" aria-label="Close settings">
+            <svg data-icon="close"></svg>
+          </button>
+        </header>
+
+        <p class="settings__note">
+          Changes here show up straight away, but <strong>only in your browser</strong>.
+          To publish them, click <strong>Download portfolio.js</strong> and upload that file
+          to your GitHub repository (replace the old one).
+        </p>
+
+        <fieldset class="settings__group">
+          <legend>About you</legend>
+          <label>Name <input name="name" autocomplete="off" /></label>
+          <label>Headline <input name="headline" autocomplete="off" /></label>
+          <label>Intro line <input name="intro" autocomplete="off" /></label>
+          <label>Email <input name="email" type="email" autocomplete="off" /></label>
+          <label>Photo <input name="photo" placeholder="images/me.jpg" autocomplete="off" /></label>
+        </fieldset>
+
+        <fieldset class="settings__group">
+          <legend>Links</legend>
+          <div class="settings__list" data-social-rows></div>
+          <button class="btn btn--ghost" type="button" data-action="add-social">+ Add a link</button>
+        </fieldset>
+
+        <fieldset class="settings__group">
+          <legend>Tools</legend>
+          <p class="settings__hint">
+            Logo: the path to an image in your repo, like <code>images/tools/python.svg</code>,
+            or a full <code>https://</code> link. Use <strong>Pick image</strong> to preview one now -
+            then upload that file to <code>images/tools/</code> in your repo.
+          </p>
+          <div class="settings__list" data-tool-rows></div>
+          <button class="btn btn--ghost" type="button" data-action="add-tool">+ Add a tool</button>
+        </fieldset>
+
+        <p class="settings__upload" data-upload-note hidden></p>
+
+        <footer class="settings__foot">
+          <button class="btn btn--ghost" type="button" data-action="reset-settings">Undo my changes</button>
+          <button class="btn btn--dark" type="button" data-action="download">Download portfolio.js</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <!-- Your content first, then the code that builds the page from it. -->
+    <script src="portfolio.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
